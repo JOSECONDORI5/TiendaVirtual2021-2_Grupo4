@@ -18,6 +18,7 @@ import com.google.common.base.StandardSystemProperty;
 //import org.bson.types.ObjectId;
 import org.eclipse.jetty.http.HttpHeader;
 import org.eclipse.jetty.http.HttpStatus;
+import tienda.models.impl.GamaMediaFactory;
 import tienda.models.interfaces.IBateria;
 import tienda.models.interfaces.ICamara;
 
@@ -86,7 +87,8 @@ public class ProductControllerImpl implements ProductController {
 
     @Override
     public void loadProducts(Context context) {
-
+        
+        //GAMA BAJA
         IProductoFactory abstractFactory = new GamaBajaFactory();
         String lineaGB = abstractFactory.getLineaProducto().getLinea();
         String mantenimientoGB = abstractFactory.getMantenimiento().getPeriodo();
@@ -106,7 +108,29 @@ public class ProductControllerImpl implements ProductController {
         pr1.setCamara(camaraGB);
         pr1.setBateria(bateriaGB);
         productRepository.create(pr1);
+        
+        //GAMA MEDIA
+        abstractFactory = new GamaMediaFactory();
+        String lineaGM = abstractFactory.getLineaProducto().getLinea();
+        String mantenimientoGM = abstractFactory.getMantenimiento().getPeriodo();
+        
+        ICamara camaraGM = abstractFactory.getCamara();
+        camaraGM.setPrincipal("64MP");
+        camaraGM.setPosterior("16MP");
+        camaraGM.setProfundidad("2MP");
+        
+        IBateria bateriaGM = abstractFactory.getBateria();
+        bateriaGM.setCapacidad("3.500 maH");
+        bateriaGM.setTipoCarga("Carga rapida");
+        bateriaGM.setPotencia("45 W");
 
+        Producto pr2 = new Producto( "P200202", "Samsung", 2200.00, lineaGM, mantenimientoGM );
+        pr2.setFamilia( new FamiliaCelulares( new CategoriaTrabajo() ) );
+        pr2.setCamara(camaraGM);
+        pr2.setBateria(bateriaGM);
+        productRepository.create(pr2);
+        
+        //GAMA ALTA
         abstractFactory = new GamaAltaFactory();
         String lineaGA = abstractFactory.getLineaProducto().getLinea();
         String mantenimientoGA = abstractFactory.getMantenimiento().getPeriodo();
@@ -121,11 +145,11 @@ public class ProductControllerImpl implements ProductController {
         bateriaGA.setTipoCarga("Carga rapida");
         bateriaGA.setPotencia("55 W");
 
-        Producto pr2 = new Producto( "P200202", "Iphone", 3400.00, lineaGA, mantenimientoGA );
-        pr2.setFamilia( new FamiliaCelulares( new CategoriaTrabajo() ) );
-        pr2.setCamara(camaraGB);
-        pr2.setBateria(bateriaGB);
-        productRepository.create(pr2);
+        Producto pr3 = new Producto( "P200203", "Iphone", 3400.00, lineaGA, mantenimientoGA );
+        pr3.setFamilia( new FamiliaCelulares( new CategoriaTrabajo() ) );
+        pr3.setCamara(camaraGB);
+        pr3.setBateria(bateriaGB);
+        productRepository.create(pr3);
 
     }
     
