@@ -18,6 +18,7 @@ import com.google.common.base.StandardSystemProperty;
 //import org.bson.types.ObjectId;
 import org.eclipse.jetty.http.HttpHeader;
 import org.eclipse.jetty.http.HttpStatus;
+import tienda.models.impl.CategoriaJuegos;
 import tienda.models.impl.GamaMediaFactory;
 import tienda.models.interfaces.IBateria;
 import tienda.models.interfaces.ICamara;
@@ -104,7 +105,7 @@ public class ProductControllerImpl implements ProductController {
         bateriaGB.setPotencia("33 W");
 
         Producto pr1 = new Producto( "P200201", "Nokia", 1400.00, lineaGB, mantenimientoGB );
-        pr1.setFamilia( new FamiliaCelulares() );
+        pr1.setFamilia( new FamiliaCelulares(new CategoriaJuegos()) );
         pr1.setCamara(camaraGB);
         pr1.setBateria(bateriaGB);
         productRepository.create(pr1);

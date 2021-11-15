@@ -1,17 +1,12 @@
 package tienda.models.impl;
 
+import tienda.models.Familia;
 import tienda.models.interfaces.ICategoria;
-import tienda.models.interfaces.IFamilia;
 
-public class FamiliaCelulares implements IFamilia   {
+public class FamiliaCelulares extends Familia{
 
-    protected ICategoria categoria;
-
-    public FamiliaCelulares()   {}
-
-    public FamiliaCelulares( ICategoria categoria ) {
-
-        this.categoria = categoria;
+    public FamiliaCelulares(ICategoria categoria) {
+        super(categoria);
     }
 
     @Override

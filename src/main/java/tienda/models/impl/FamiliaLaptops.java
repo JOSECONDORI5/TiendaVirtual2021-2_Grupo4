@@ -1,17 +1,13 @@
 package tienda.models.impl;
 
+import tienda.models.Familia;
 import tienda.models.interfaces.ICategoria;
-import tienda.models.interfaces.IFamilia;
 
-public class FamiliaLaptops implements IFamilia {
-    
-    protected ICategoria categoria;
+public class FamiliaLaptops extends Familia {
 
-    public FamiliaLaptops() {}
+    public FamiliaLaptops(ICategoria categoria) {
 
-    public FamiliaLaptops( ICategoria categoria ) {
-
-        this.categoria = categoria;
+        super(categoria);
     }
 
     @Override
