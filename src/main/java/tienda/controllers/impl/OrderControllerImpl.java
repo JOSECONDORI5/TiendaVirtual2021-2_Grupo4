@@ -24,6 +24,10 @@ import java.util.List;
 //import org.bson.types.ObjectId;
 import org.eclipse.jetty.http.HttpHeader;
 import org.eclipse.jetty.http.HttpStatus;
+import tienda.models.impl.BancoMetodoPagoFactory;
+import tienda.models.interfaces.IDocumento;
+import tienda.models.interfaces.IMetodoPago;
+import tienda.models.interfaces.IPagoFactory;
 
 public class OrderControllerImpl implements OrderController {
     private static final String ID = "id";
@@ -59,7 +63,10 @@ public class OrderControllerImpl implements OrderController {
 
         //MetodoPago paymentMethod = new MetodoPago();
         //BlockChainMetodoPago paymentMethod = new BlockChainMetodoPago();
-        BancoMetodoPago paymentMethod = new BancoMetodoPago();
+        IPagoFactory pagoFactory = new BancoMetodoPagoFactory();
+        IDocumento doc = pagoFactory.getDocumento();
+        
+        IMetodoPago paymentMethod = pagoFactory.getOperacion();
         order.pagar(paymentMethod);
 
         Cliente cliObj = (Cliente)customerRepository.find("616f797ea7539a581e64e7e8");

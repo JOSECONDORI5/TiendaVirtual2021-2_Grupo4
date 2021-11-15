@@ -1,6 +1,8 @@
 package tienda.models;
 
-public class BancoMetodoPago extends MetodoPago {
+import tienda.models.interfaces.IMetodoPago;
+
+public class BancoMetodoPago implements IMetodoPago {
 
     private String bankId;
     private Double comision;
@@ -8,6 +10,13 @@ public class BancoMetodoPago extends MetodoPago {
     @Override
     public  void pagarPedido(Pedido order){
         bankPayOrder(order);
+    }
+    
+    @Override
+    public void mostrarPago(Pedido order){
+
+        /* Efectivo */
+        System.out.println("Pagando con efectivo | total: "+ order.getMontoTotal());
     }
 
     public void bankPayOrder(Pedido order){

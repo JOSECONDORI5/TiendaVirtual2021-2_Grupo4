@@ -3,8 +3,9 @@ package tienda.models;
 import com.fasterxml.uuid.Generators;
 
 import java.util.UUID;
+import tienda.models.interfaces.IMetodoPago;
 
-public class BlockChainMetodoPago extends MetodoPago {
+public class BlockChainMetodoPago implements IMetodoPago {
 
     private String walletId;
     private Double comision;
@@ -14,6 +15,12 @@ public class BlockChainMetodoPago extends MetodoPago {
         walletPayOrder(order);
     }
 
+     @Override
+    public void mostrarPago(Pedido order){
+
+        /* Efectivo */
+        System.out.println("Pagando con efectivo | total: "+ order.getMontoTotal());
+    }
     public void walletPayOrder(Pedido order){
         
         comision = order.getMontoTotal() * 0.05;

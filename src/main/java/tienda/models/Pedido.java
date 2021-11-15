@@ -3,6 +3,7 @@ package tienda.models;
 import java.util.List;
 
 import tienda.models.interfaces.IDescuento;
+import tienda.models.interfaces.IMetodoPago;
 import tienda.models.interfaces.IPedidoDetalle;
 
 
@@ -102,9 +103,10 @@ public class Pedido {
         return total;
     }
 
-    public void pagar(MetodoPago paymentMethod)   {
+    public void pagar(IMetodoPago paymentMethod)   {
 
         System.out.println("Paying order ...");
         paymentMethod.pagarPedido(this);
+        paymentMethod.mostrarPago(this);
     }
 }
