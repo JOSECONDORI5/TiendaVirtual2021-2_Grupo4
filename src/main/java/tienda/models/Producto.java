@@ -1,5 +1,7 @@
 package tienda.models;
 
+import tienda.models.interfaces.IBateria;
+import tienda.models.interfaces.ICamara;
 import tienda.models.interfaces.IFamilia;
 
 public class Producto {
@@ -10,6 +12,8 @@ public class Producto {
     private String lineaProducto;
     private String mantenimiento;
     private IFamilia familia;
+    private ICamara camara;
+    private IBateria bateria;
 
     public Producto(String codigo, String descripcion, Double precioBase, String linea, String mantenimiento)   {
 
@@ -18,6 +22,22 @@ public class Producto {
         this.precioBase = precioBase;
         this.lineaProducto = linea;
         this.mantenimiento = mantenimiento;
+    }
+
+    public ICamara getCamara() {
+        return camara;
+    }
+
+    public void setCamara(ICamara camara) {
+        this.camara = camara;
+    }
+
+    public IBateria getBateria() {
+        return bateria;
+    }
+
+    public void setBateria(IBateria bateria) {
+        this.bateria = bateria;
     }
 
     public IFamilia getFamilia() {

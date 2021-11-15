@@ -8,5 +8,9 @@ public interface IProductoFactory {
     public LineaProducto getLineaProducto();
 
     public MantenimientoProducto getMantenimiento();
+    
+    public ICamara getCamara();
+    
+    public IBateria getBateria();
 
 }

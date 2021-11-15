@@ -18,6 +18,8 @@ import com.google.common.base.StandardSystemProperty;
 //import org.bson.types.ObjectId;
 import org.eclipse.jetty.http.HttpHeader;
 import org.eclipse.jetty.http.HttpStatus;
+import tienda.models.interfaces.IBateria;
+import tienda.models.interfaces.ICamara;
 
 
 public class ProductControllerImpl implements ProductController {
@@ -88,17 +90,41 @@ public class ProductControllerImpl implements ProductController {
         IProductoFactory abstractFactory = new GamaBajaFactory();
         String lineaGB = abstractFactory.getLineaProducto().getLinea();
         String mantenimientoGB = abstractFactory.getMantenimiento().getPeriodo();
+        
+        ICamara camaraGB = abstractFactory.getCamara();
+        camaraGB.setPrincipal("8MP");
+        camaraGB.setPosterior("16MP");
+        camaraGB.setProfundidad("2MP");
+        
+        IBateria bateriaGB = abstractFactory.getBateria();
+        bateriaGB.setCapacidad("2.000 maH");
+        bateriaGB.setTipoCarga("Carga rapida");
+        bateriaGB.setPotencia("33 W");
 
         Producto pr1 = new Producto( "P200201", "Nokia", 1400.00, lineaGB, mantenimientoGB );
         pr1.setFamilia( new FamiliaCelulares() );
+        pr1.setCamara(camaraGB);
+        pr1.setBateria(bateriaGB);
         productRepository.create(pr1);
 
         abstractFactory = new GamaAltaFactory();
         String lineaGA = abstractFactory.getLineaProducto().getLinea();
         String mantenimientoGA = abstractFactory.getMantenimiento().getPeriodo();
+        
+        ICamara camaraGA = abstractFactory.getCamara();
+        camaraGA.setPrincipal("108MP");
+        camaraGA.setPosterior("16MP");
+        camaraGA.setProfundidad("2MP");
+        
+        IBateria bateriaGA = abstractFactory.getBateria();
+        bateriaGA.setCapacidad("4.000 maH");
+        bateriaGA.setTipoCarga("Carga rapida");
+        bateriaGA.setPotencia("55 W");
 
         Producto pr2 = new Producto( "P200202", "Iphone", 3400.00, lineaGA, mantenimientoGA );
         pr2.setFamilia( new FamiliaCelulares( new CategoriaTrabajo() ) );
+        pr2.setCamara(camaraGB);
+        pr2.setBateria(bateriaGB);
         productRepository.create(pr2);
 
     }
